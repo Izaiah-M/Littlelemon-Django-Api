@@ -65,6 +65,112 @@ The API provides the following endpoints:
 - `PATCH /api/menu-items/{menuItem}` (Manager Only): Updates a single menu item.
 - `DELETE /api/menu-items/{menuItem}` (Manager Only): Deletes a menu item.
 
+### User Group Management Endpoints
+
+#### /api/groups/manager/users
+
+- Role: Manager
+- Method: GET
+- Purpose: Returns all managers.
+
+#### /api/groups/manager/users
+
+- Role: Manager
+- Method: POST
+- Purpose: Assigns the user in the payload to the manager group and returns 201 - Created.
+
+#### /api/groups/manager/users/{userId}
+
+- Role: Manager
+- Method: DELETE
+- Purpose: Removes this particular user from the manager group and returns 200 - Success if everything is okay. If the user is not found, returns 404 - Not found.
+
+#### /api/groups/delivery-crew/users
+
+- Role: Manager
+- Method: GET
+- Purpose: Returns all delivery crew.
+
+#### /api/groups/delivery-crew/users
+
+- Role: Manager
+- Method: POST
+- Purpose: Assigns the user in the payload to the delivery crew group and returns 201 - Created.
+
+#### /api/groups/delivery-crew/users/{userId}
+
+- Role: Manager
+- Method: DELETE
+- Purpose: Removes this user from the delivery crew group and returns 200 - Success if everything is okay. If the user is not found, returns 404 - Not found.
+
+### Cart Management Endpoints
+
+#### /api/cart/menu-items
+
+- Role: Customer
+- Method: GET
+- Purpose: Returns current items in the cart for the current user token.
+
+#### /api/cart/menu-items
+
+- Role: Customer
+- Method: POST
+- Purpose: Adds the menu item to the cart. Sets the authenticated user as the user ID for these cart items.
+
+#### /api/cart/menu-items
+
+- Role: Customer
+- Method: DELETE
+- Purpose: Deletes all menu items created by the current user token.
+
+...
+
+### Order Management Endpoints
+
+#### /api/orders
+
+- Role: Customer
+- Method: GET
+- Purpose: Returns all orders with order items created by this user.
+
+#### /api/orders
+
+- Role: Customer
+- Method: POST
+- Purpose: Creates a new order item for the current user. Gets current cart items from the cart endpoints and adds those items to the order items table. Then deletes all items from the cart for this user.
+
+#### /api/orders/{orderId}
+
+- Role: Customer
+- Method: GET
+- Purpose: Returns all items for this order ID. If the order ID doesn't belong to the current user, it displays an appropriate HTTP error status code.
+
+#### /api/orders
+
+- Role: Manager
+- Method: GET
+- Purpose: Returns all orders with order items by all users.
+
+...
+
+#### /api/orders/{orderId}
+
+- Role: Manager
+- Method: DELETE
+- Purpose: Deletes this order.
+
+#### /api/orders
+
+- Role: Delivery crew
+- Method: GET
+- Purpose: Returns all orders with order items assigned to the delivery crew.
+
+#### /api/orders/{orderId}
+
+- Role: Delivery crew
+- Method: PATCH
+- Purpose: A delivery crew can use this endpoint to update the order status to 0 or 1. The delivery crew will not be able to update anything else in this order.
+
 ## Usage
 
 To use this API, follow the steps below:
