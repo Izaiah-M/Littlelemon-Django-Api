@@ -1,4 +1,4 @@
-# Restaurant API
+# Littlelemon Restaurant API
 
 This API provides functionality for managing a restaurant's menu, orders, and users. It is built using the Django Rest Framework (DRF).
 
